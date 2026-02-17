@@ -82,7 +82,7 @@ export default function HomePage() {
               </span>
             }
             showGradient={false}
-            src="/cards-screenshot.jpg"
+            src="/cards-screenshot.png"
           />
         </div>
 
