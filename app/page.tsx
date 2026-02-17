@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Disclaimer from '@/components/Disclaimer'
 import InputForm from '@/components/InputForm'
 import ResultsPanel from '@/components/ResultsPanel'
+import { FeaturesSection } from '@/components/FeaturesSection'
 import { DottedGlowBackground } from '@/components/ui/dotted-glow-background'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
@@ -77,6 +78,9 @@ export default function HomePage() {
           </a>
         </nav>
       </header>
+
+      {/* Features Section */}
+      <FeaturesSection />
 
       <div className="relative z-10 mx-auto max-w-3xl">
         <Disclaimer />
