@@ -68,6 +68,14 @@ export default function HomePage() {
         <p className="mt-2 text-base text-slate-600">
           Educational clinical reasoning exploration — for educational purposes only.
         </p>
+        <nav className="mt-4">
+          <a
+            href="/about"
+            className="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800"
+          >
+            About Us →
+          </a>
+        </nav>
       </header>
 
       <div className="relative z-10 mx-auto max-w-3xl">
