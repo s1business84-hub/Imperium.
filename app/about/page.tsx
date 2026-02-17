@@ -22,7 +22,7 @@ export default function AboutPage() {
             <h1 className="mb-4 text-5xl font-bold text-slate-900">
               <EncryptedText text="About Us" />
             </h1>
-            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
+            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500"></div>
           </div>
 
           <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-slate-700">
@@ -50,7 +50,7 @@ export default function AboutPage() {
             <h2 className="mb-4 text-4xl font-bold text-slate-900">
               <EncryptedText text="What We Do" />
             </h2>
-            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-amber-500 to-orange-500"></div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

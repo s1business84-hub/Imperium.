@@ -73,15 +73,6 @@ export function FeaturesSection() {
 
   return (
     <div className="relative z-10 mx-auto max-w-7xl py-10">
-      <div className="mb-12 text-center">
-        <h2 className="mb-4 text-3xl font-bold text-slate-900">
-          Why Choose Imperium?
-        </h2>
-        <p className="mx-auto max-w-2xl text-base text-slate-600">
-          Advanced clinical reasoning support designed for medical education and learning
-        </p>
-      </div>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature, index) => (
           <Feature key={feature.title} {...feature} index={index} />
