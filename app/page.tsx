@@ -5,6 +5,7 @@ import Disclaimer from '@/components/Disclaimer'
 import InputForm from '@/components/InputForm'
 import ResultsPanel from '@/components/ResultsPanel'
 import { DottedGlowBackground } from '@/components/ui/dotted-glow-background'
+import { EncryptedText } from '@/components/ui/encrypted-text'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
 
 export default function HomePage() {
@@ -56,6 +57,12 @@ export default function HomePage() {
         speedScale={1}
       />
       
+      <div className="relative z-10 mb-12 flex items-center justify-center text-center">
+        <p className="text-2xl font-light text-slate-700 sm:text-3xl">
+          <EncryptedText text="Welcome to Imperium" className="font-semibold" />
+        </p>
+      </div>
+
       <header className="relative z-10 mb-8 text-center">
         <h1 className="text-4xl font-bold text-slate-900">Imperium</h1>
         <p className="mt-2 text-base text-slate-600">
