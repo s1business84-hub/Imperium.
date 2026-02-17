@@ -77,8 +77,8 @@ export default function HomePage() {
         <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
           <MacbookScroll
             title={
-              <span className="text-4xl font-bold text-slate-900 dark:text-white">
-                Clinical Reasoning, <br /> <span className="text-blue-600">Reimagined.</span>
+              <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent dark:text-white">
+                Clinical Reasoning, <br /> <span className="bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent">Reimagined.</span>
               </span>
             }
             showGradient={false}

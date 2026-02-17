@@ -65,7 +65,7 @@ export default function GetStartedPage() {
 
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-5xl font-bold text-slate-900">
+          <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
             <EncryptedText text="Get Started" />
           </h1>
           <div className="mx-auto mb-6 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>

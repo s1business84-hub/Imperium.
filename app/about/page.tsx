@@ -19,9 +19,9 @@ export default function AboutPage() {
         {/* About Us Section */}
         <section className="mb-20">
           <div className="mb-8 text-center">
-            <h1 className="mb-4 text-5xl font-bold text-slate-900">
-              <EncryptedText text="About Us" />
-            </h1>
+          <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-teal-600 to-cyan-500 bg-clip-text text-transparent">
+            <EncryptedText text="About Us" />
+          </h1>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500"></div>
           </div>
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
         {/* What We Do Section */}
         <section className="mb-20">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-slate-900">
+            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
               <EncryptedText text="What We Do" />
             </h2>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-amber-500 to-orange-500"></div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
         {/* CTA Section */}
         <section className="mb-12">
           <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-50 to-purple-50 p-12 text-center shadow-xl">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900">Ready to Get Started?</h2>
+            <h2 className="mb-4 text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Ready to Get Started?</h2>
             <p className="mb-8 text-lg text-slate-600">
               Explore clinical reasoning with Imperium&apos;s educational AI platform.
             </p>
