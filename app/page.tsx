@@ -1,10 +1,25 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import Disclaimer from '@/components/Disclaimer'
 import InputForm from '@/components/InputForm'
 import ResultsPanel from '@/components/ResultsPanel'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
+
+const Globe3D = dynamic(() => import('@/components/ui/3d-globe').then(mod => ({ default: mod.Globe3D })), {
+  ssr: false,
+  loading: () => <div className="h-[400px] w-full animate-pulse rounded-xl bg-slate-100" />
+})
+
+const globalMarkers = [
+  { lat: 40.7128, lng: -74.006, src: "", label: "New York" },
+  { lat: 51.5074, lng: -0.1278, src: "", label: "London" },
+  { lat: 35.6762, lng: 139.6503, src: "", label: "Tokyo" },
+  { lat: 25.2048, lng: 55.2708, src: "", label: "Dubai" },
+  { lat: -33.8688, lng: 151.2093, src: "", label: "Sydney" },
+  { lat: 48.8566, lng: 2.3522, src: "", label: "Paris" },
+]
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -39,29 +54,43 @@ export default function HomePage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
+    <main className="mx-auto max-w-7xl px-4 py-10">
       <header className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-slate-900">Imperium</h1>
-        <p className="mt-2 text-sm text-slate-600">
+        <h1 className="text-4xl font-bold text-slate-900">Imperium</h1>
+        <p className="mt-2 text-base text-slate-600">
           Educational clinical reasoning exploration — for educational purposes only.
         </p>
       </header>
 
-      <Disclaimer />
+      <div className="mb-12 h-[400px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-lg">
+        <Globe3D
+          markers={globalMarkers}
+          config={{
+            atmosphereColor: "#3b82f6",
+            atmosphereIntensity: 15,
+            bumpScale: 3,
+            autoRotateSpeed: 0.5,
+          }}
+        />
+      </div>
 
-      <section className="mt-8 space-y-8">
-        <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
-        <ResultsPanel result={result} error={error} />
-      </section>
+      <div className="mx-auto max-w-3xl">
+        <Disclaimer />
 
-      <footer className="mt-12 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
-        <p>
-          This tool is for educational purposes only. It does not constitute
-          medical advice or treatment recommendations and is not intended to
-          inform clinical decisions. Always consult a qualified healthcare
-          provider for medical concerns.
-        </p>
-      </footer>
+        <section className="mt-8 space-y-8">
+          <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
+          <ResultsPanel result={result} error={error} />
+        </section>
+
+        <footer className="mt-12 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
+          <p>
+            This tool is for educational purposes only. It does not constitute
+            medical advice or treatment recommendations and is not intended to
+            inform clinical decisions. Always consult a qualified healthcare
+            provider for medical concerns.
+          </p>
+        </footer>
+      </div>
     </main>
   )
 }
