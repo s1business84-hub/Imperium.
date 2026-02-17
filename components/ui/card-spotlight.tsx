@@ -4,10 +4,9 @@ import {
   useMotionValue,
   motion,
   useMotionTemplate,
-  MotionValue,
 } from "motion/react";
 import React, { useState } from "react";
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { CanvasRevealEffect } from "./canvas-reveal-effect";
 import { cn } from "@/lib/utils";
 
 export const CardSpotlight = ({
@@ -39,6 +38,15 @@ export const CardSpotlight = ({
   const handleMouseEnter = () => setIsHovering(true);
   const handleMouseLeave = () => setIsHovering(false);
 
+  const radiusValue = useMotionValue(radius);
+  const maskImage = useMotionTemplate`
+    radial-gradient(
+      ${radiusValue}px circle at ${mouseX}px ${mouseY}px,
+      white,
+      transparent 80%
+    )
+  `;
+
   return (
     <div
       className={cn(
@@ -54,13 +62,7 @@ export const CardSpotlight = ({
         className="pointer-events-none absolute z-0 -inset-px rounded-md opacity-0 transition duration-300 group-hover/spotlight:opacity-100"
         style={{
           backgroundColor: color,
-          maskImage: useMotionTemplate`
-            radial-gradient(
-              ${radius as unknown as MotionValue<number>}px circle at ${mouseX}px ${mouseY}px,
-              white,
-              transparent 80%
-            )
-          `,
+          maskImage,
         }}
       >
         {isHovering && (
