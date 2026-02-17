@@ -5,7 +5,6 @@ import Disclaimer from '@/components/Disclaimer'
 import InputForm from '@/components/InputForm'
 import ResultsPanel from '@/components/ResultsPanel'
 import { FeaturesSection } from '@/components/FeaturesSection'
-import { DottedGlowBackground } from '@/components/ui/dotted-glow-background'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
 
@@ -42,39 +41,30 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative mx-auto max-w-7xl px-4 py-10">
-      <DottedGlowBackground
-        className="pointer-events-none mask-radial-to-90% mask-radial-at-center opacity-20 dark:opacity-100"
-        opacity={1}
-        gap={10}
-        radius={1.6}
-        colorLightVar="--color-neutral-500"
-        glowColorLightVar="--color-neutral-600"
-        colorDarkVar="--color-neutral-500"
-        glowColorDarkVar="--color-sky-800"
-        backgroundOpacity={0}
-        speedMin={0.3}
-        speedMax={1.6}
-        speedScale={1}
-      />
-      
-      <div className="relative z-10 mb-12 flex items-center justify-center text-center">
+    <main className="mx-auto max-w-7xl px-4 py-10">
+      <div className="mb-12 flex items-center justify-center text-center">
         <p className="text-2xl font-light text-slate-700 sm:text-3xl">
           <EncryptedText text="Welcome to Imperium" className="font-semibold" />
         </p>
       </div>
 
-      <header className="relative z-10 mb-8 text-center">
+      <header className="mb-8 text-center">
         <h1 className="text-4xl font-bold text-slate-900">Imperium</h1>
         <p className="mt-2 text-base text-slate-600">
           Educational clinical reasoning exploration — for educational purposes only.
         </p>
-        <nav className="mt-4">
+        <nav className="mt-4 flex items-center justify-center gap-4">
           <a
             href="/about"
             className="inline-flex items-center text-sm font-medium text-blue-600 transition-colors hover:text-blue-800"
           >
             About Us →
+          </a>
+          <a
+            href="/get-started"
+            className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+          >
+            Get Started
           </a>
         </nav>
       </header>
@@ -82,15 +72,18 @@ export default function HomePage() {
       {/* Features Section */}
       <FeaturesSection />
 
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <Disclaimer />
-
+      <div className="mx-auto max-w-3xl">
         <section className="mt-8 space-y-8">
           <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
           <ResultsPanel result={result} error={error} />
         </section>
 
-        <footer className="mt-12 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
+        {/* Disclaimer at the end */}
+        <div className="mt-12">
+          <Disclaimer />
+        </div>
+
+        <footer className="mt-8 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
           <p>
             This tool is for educational purposes only. It does not constitute
             medical advice or treatment recommendations and is not intended to

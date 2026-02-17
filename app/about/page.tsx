@@ -1,27 +1,11 @@
 "use client";
 import React from "react";
-import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen">
-      <DottedGlowBackground
-        className="pointer-events-none mask-radial-to-90% mask-radial-at-center opacity-20 dark:opacity-100"
-        opacity={1}
-        gap={10}
-        radius={1.6}
-        colorLightVar="--color-neutral-500"
-        glowColorLightVar="--color-neutral-600"
-        colorDarkVar="--color-neutral-500"
-        glowColorDarkVar="--color-sky-800"
-        backgroundOpacity={0}
-        speedMin={0.3}
-        speedMax={1.6}
-        speedScale={1}
-      />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16">
+    <main className="min-h-screen">
+      <div className="mx-auto max-w-7xl px-4 py-16">
         {/* Navigation */}
         <nav className="mb-12">
           <a
