@@ -104,11 +104,11 @@ export default function HomePage() {
         {/* Start Exploring Button */}
         <div className="mt-12 flex justify-center">
           <button
-            onClick={() => setShowForm(true)}
+            onClick={() => setShowForm(!showForm)}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:shadow-xl"
           >
-            Start Exploring Now
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {showForm ? 'Hide Form' : 'Start Exploring Now'}
+            <svg className={`h-5 w-5 transition-transform duration-200 ${showForm ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </button>
