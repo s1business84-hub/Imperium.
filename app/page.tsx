@@ -19,6 +19,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<MedicalOutput | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showForm, setShowForm] = useState(false)
 
   async function handleSubmit(payload: MedicalInput) {
     setIsLoading(true)
@@ -50,6 +51,7 @@ export default function HomePage() {
   return (
     <BackgroundLines className="relative">
       <main className="mx-auto max-w-7xl px-4 py-10">
+        {/* Hero: Welcome + Nav */}
         <div className="mb-12 flex items-center justify-center text-center">
           <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             <EncryptedText text="Welcome to Imperium" className="font-semibold" />
@@ -86,33 +88,49 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Features Section */}
+        {/* Feature Cards */}
         <FeaturesSection />
+
+        {/* About Link */}
+        <div className="mt-8 flex justify-center">
+          <a
+            href="/about"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-md transition-all duration-200 hover:bg-slate-50 hover:shadow-lg"
+          >
+            Learn More About Us →
+          </a>
+        </div>
 
         {/* Start Exploring Button */}
         <div className="mt-12 flex justify-center">
-          <a
-            href="#explore"
+          <button
+            onClick={() => setShowForm(true)}
             className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:shadow-xl"
           >
             Start Exploring Now
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </a>
+          </button>
         </div>
 
-        <div className="mx-auto max-w-3xl" id="explore">
-          <section className="mt-12 space-y-8">
-            <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
-            <ResultsPanel result={result} error={error} />
-          </section>
+        {/* Form - Only shown after clicking Start Exploring */}
+        {showForm && (
+          <div className="mx-auto max-w-3xl" id="explore">
+            <section className="mt-12 space-y-8">
+              <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
+              <ResultsPanel result={result} error={error} />
+            </section>
 
-          {/* Disclaimer at the end */}
-          <div className="mt-12">
-            <Disclaimer />
+            {/* Disclaimer */}
+            <div className="mt-12">
+              <Disclaimer />
+            </div>
           </div>
+        )}
 
+        {/* Footer */}
+        <div className="mx-auto max-w-3xl">
           <footer className="mt-8 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
             <p>
               This tool is for educational purposes only. It does not constitute
