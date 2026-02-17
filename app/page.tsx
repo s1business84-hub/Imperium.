@@ -82,7 +82,7 @@ export default function HomePage() {
               </span>
             }
             showGradient={false}
-            src="/linear.webp"
+            src="/cards-screenshot.jpg"
           />
         </div>
 
