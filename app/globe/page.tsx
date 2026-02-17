@@ -1,107 +1,43 @@
 "use client";
-import { Globe3D } from "@/components/ui/3d-globe";
-
-const sampleMarkers = [
-  {
-    lat: 40.7128,
-    lng: -74.006,
-    src: "https://assets.aceternity.com/avatars/1.webp",
-    label: "New York",
-  },
-  {
-    lat: 51.5074,
-    lng: -0.1278,
-    src: "https://assets.aceternity.com/avatars/2.webp",
-    label: "London",
-  },
-  {
-    lat: 35.6762,
-    lng: 139.6503,
-    src: "https://assets.aceternity.com/avatars/3.webp",
-    label: "Tokyo",
-  },
-  {
-    lat: -33.8688,
-    lng: 151.2093,
-    src: "https://assets.aceternity.com/avatars/4.webp",
-    label: "Sydney",
-  },
-  {
-    lat: 48.8566,
-    lng: 2.3522,
-    src: "https://assets.aceternity.com/avatars/5.webp",
-    label: "Paris",
-  },
-  {
-    lat: 28.6139,
-    lng: 77.209,
-    src: "https://assets.aceternity.com/avatars/6.webp",
-    label: "New Delhi",
-  },
-  {
-    lat: 55.7558,
-    lng: 37.6173,
-    src: "https://assets.aceternity.com/avatars/7.webp",
-    label: "Moscow",
-  },
-  {
-    lat: -22.9068,
-    lng: -43.1729,
-    src: "https://assets.aceternity.com/avatars/8.webp",
-    label: "Rio de Janeiro",
-  },
-  {
-    lat: 31.2304,
-    lng: 121.4737,
-    src: "https://assets.aceternity.com/avatars/9.webp",
-    label: "Shanghai",
-  },
-  {
-    lat: 25.2048,
-    lng: 55.2708,
-    src: "https://assets.aceternity.com/avatars/10.webp",
-    label: "Dubai",
-  },
-  {
-    lat: -34.6037,
-    lng: -58.3816,
-    src: "https://assets.aceternity.com/avatars/11.webp",
-    label: "Buenos Aires",
-  },
-  {
-    lat: 1.3521,
-    lng: 103.8198,
-    src: "https://assets.aceternity.com/avatars/12.webp",
-    label: "Singapore",
-  },
-  {
-    lat: 37.5665,
-    lng: 126.978,
-    src: "https://assets.aceternity.com/avatars/13.webp",
-    label: "Seoul",
-  },
-];
+import React from "react";
+import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 
 export default function GlobePage() {
   return (
-    <div className="h-[600px] w-full">
-      <Globe3D
-        markers={sampleMarkers}
-        config={{
-          atmosphereColor: "#4da6ff",
-          atmosphereIntensity: 20,
-          bumpScale: 5,
-          autoRotateSpeed: 0.3,
-        }}
-        onMarkerClick={(marker) => {
-          console.log("Clicked marker:", marker.label);
-        }}
-        onMarkerHover={(marker) => {
-          if (marker) {
-            console.log("Hovering:", marker.label);
-          }
-        }}
+    <div className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center justify-center">
+      <DottedGlowBackground
+        className="pointer-events-none mask-radial-to-90% mask-radial-at-center opacity-20 dark:opacity-100"
+        opacity={1}
+        gap={10}
+        radius={1.6}
+        colorLightVar="--color-neutral-500"
+        glowColorLightVar="--color-neutral-600"
+        colorDarkVar="--color-neutral-500"
+        glowColorDarkVar="--color-sky-800"
+        backgroundOpacity={0}
+        speedMin={0.3}
+        speedMax={1.6}
+        speedScale={1}
       />
+      <div className="relative z-10 flex w-full flex-col items-center justify-between space-y-6 px-8 py-16 text-center md:flex-row">
+        <div>
+          <h2 className="text-center text-4xl font-normal tracking-tight text-neutral-900 sm:text-5xl md:text-left dark:text-neutral-400">
+            Ready to explore{" "}
+            <span className="font-bold dark:text-white">Imperium</span>?
+          </h2>
+          <p className="mt-4 max-w-lg text-center text-base text-neutral-600 md:text-left dark:text-neutral-300">
+            Educational clinical reasoning exploration tool for learning and discovery.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-8 py-3 text-sm font-medium text-neutral-700 shadow-sm transition-all duration-200 hover:bg-neutral-50 hover:shadow-md dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
