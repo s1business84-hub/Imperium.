@@ -58,6 +58,50 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Our Mission Section */}
+        <section className="mb-20">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-500 bg-clip-text text-transparent">
+              <EncryptedText text="Our Mission" />
+            </h2>
+            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+          </div>
+
+          <div className="mx-auto max-w-3xl grid gap-8 md:grid-cols-2">
+            {/* Mission Card 1 */}
+            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
+              <h3 className="mb-3 text-xl font-bold text-cyan-300">Empower Learning</h3>
+              <p className="text-sm text-white/80">
+                Providing AI-powered tools that enhance clinical reasoning education and help healthcare professionals develop stronger diagnostic thinking skills.
+              </p>
+            </div>
+
+            {/* Mission Card 2 */}
+            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
+              <h3 className="mb-3 text-xl font-bold text-cyan-300">Ensure Safety</h3>
+              <p className="text-sm text-white/80">
+                Maintaining strict ethical standards with PII sanitization, regulatory compliance, and responsible AI practices in healthcare.
+              </p>
+            </div>
+
+            {/* Mission Card 3 */}
+            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
+              <h3 className="mb-3 text-xl font-bold text-cyan-300">Democratize Access</h3>
+              <p className="text-sm text-white/80">
+                Making cutting-edge clinical reasoning tools available to medical students, residents, and professionals worldwide.
+              </p>
+            </div>
+
+            {/* Mission Card 4 */}
+            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
+              <h3 className="mb-3 text-xl font-bold text-cyan-300">Foster Collaboration</h3>
+              <p className="text-sm text-white/80">
+                Building a community of healthcare educators and learners dedicated to advancing medical education through technology.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* What We Do Section */}
         <section className="mb-20">
           <div className="mb-12 text-center">
