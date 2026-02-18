@@ -221,16 +221,26 @@ export default function AnalyzePage() {
                       <label className="flex items-center gap-2 mb-3 text-sm font-semibold text-white/90">
                         <IconHeartbeat className="w-4 h-4 text-cyan-400" />
                         Symptoms
+                        <span className="text-white/40 font-normal ml-1">*</span>
                       </label>
                       <textarea
-                        className="w-full min-h-32 rounded-2xl backdrop-blur-md bg-white/5 border border-white/20 px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none"
-                        placeholder="Describe symptoms in plain language. Avoid names or ID numbers..."
+                        className="w-full min-h-36 rounded-2xl backdrop-blur-md bg-white/5 border border-white/20 px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none"
+                        placeholder="Describe the clinical presentation in detail. Include:
+• Chief complaint and main symptoms
+• Character, location, severity of symptoms
+• Associated symptoms (fever, fatigue, etc.)
+• Aggravating or relieving factors
+• Relevant medical history
+
+Example: Progressive fatigue over 3 weeks, worse with exertion. Associated pallor, mild dyspnea on climbing stairs. No chest pain or palpitations. History of heavy menstrual periods."
                         value={symptoms}
                         onChange={(e) => setSymptoms(e.target.value.slice(0, MAX_SYMPTOMS_LENGTH))}
                         required
                       />
                       <div className="flex justify-between mt-2 text-xs text-white/50">
-                        <span>Minimum 10 characters required</span>
+                        <span className={symptoms.length < 10 ? 'text-amber-400' : 'text-green-400'}>
+                          {symptoms.length < 10 ? `${10 - symptoms.length} more characters needed` : '✓ Minimum met'}
+                        </span>
                         <span>{symptoms.length}/{MAX_SYMPTOMS_LENGTH}</span>
                       </div>
                     </div>
@@ -240,10 +250,11 @@ export default function AnalyzePage() {
                       <label className="flex items-center gap-2 mb-3 text-sm font-semibold text-white/90">
                         <IconClock className="w-4 h-4 text-cyan-400" />
                         Duration
+                        <span className="text-white/40 font-normal ml-1">*</span>
                       </label>
                       <input
                         className="w-full rounded-2xl backdrop-blur-md bg-white/5 border border-white/20 px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 focus:ring-2 focus:ring-cyan-400/20 transition-all"
-                        placeholder="e.g., 5 days, 2 weeks, intermittent for 3 months"
+                        placeholder="e.g., 3 days acute onset, 2 weeks progressive, intermittent over 6 months"
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
                         required
@@ -254,12 +265,16 @@ export default function AnalyzePage() {
                     <div className="mb-6">
                       <label className="flex items-center gap-2 mb-3 text-sm font-semibold text-white/90">
                         <IconTestPipe className="w-4 h-4 text-cyan-400" />
-                        Labs or Findings
-                        <span className="text-white/40 font-normal">(optional)</span>
+                        Labs, Vitals & Findings
+                        <span className="text-white/40 font-normal">(optional but helpful)</span>
                       </label>
                       <textarea
-                        className="w-full min-h-24 rounded-2xl backdrop-blur-md bg-white/5 border border-white/20 px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none"
-                        placeholder="Share any non-identifying lab results or prior findings..."
+                        className="w-full min-h-28 rounded-2xl backdrop-blur-md bg-white/5 border border-white/20 px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 focus:ring-2 focus:ring-cyan-400/20 transition-all resize-none"
+                        placeholder="Include relevant findings (no identifying info):
+• Vital signs (BP, HR, Temp, SpO2)
+• Lab results (CBC, BMP, LFTs, etc.)
+• Imaging findings
+• Physical exam findings"
                         value={labs}
                         onChange={(e) => setLabs(e.target.value.slice(0, MAX_LABS_LENGTH))}
                       />
@@ -456,40 +471,73 @@ function ResultsSection({
         <p className="text-white/80 leading-relaxed">{result.educational_note}</p>
       </motion.div>
 
-      {/* Considerations Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
+      {/* Considerations - Full Width Cards */}
+      <div className="space-y-6">
         {result.considerations.map((item, index) => (
           <motion.article
             key={`${item.condition}-${index}`}
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={
               index < visibleCount
                 ? { opacity: 1, y: 0, scale: 1 }
-                : { opacity: 0, y: 30, scale: 0.95 }
+                : { opacity: 0, y: 30, scale: 0.98 }
             }
-            transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
-            className="rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 p-6 hover:bg-white/15 transition-colors group"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.15 }}
+            className="rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 p-8 hover:bg-white/[0.12] transition-colors group"
           >
-            <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 text-lg font-bold text-white shadow-lg shadow-cyan-500/20">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 text-xl font-bold text-white shadow-lg shadow-cyan-500/20">
                 {index + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors">
+                <h3 className="text-xl font-bold text-cyan-300 group-hover:text-cyan-200 transition-colors">
                   {item.condition}
                 </h3>
               </div>
             </div>
             
-            <div className="mt-4 space-y-3 pl-14">
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wide text-cyan-400/80">Reasoning</span>
-                <p className="mt-1 text-sm text-white/80 leading-relaxed">{item.reasoning}</p>
+            <div className="space-y-5">
+              {/* Reasoning */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <span className="text-xs font-semibold uppercase tracking-wide text-cyan-400 flex items-center gap-2 mb-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  Clinical Reasoning
+                </span>
+                <p className="text-sm text-white/85 leading-relaxed">{item.reasoning}</p>
               </div>
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wide text-blue-400/80">Often Missed</span>
-                <p className="mt-1 text-sm text-white/80 leading-relaxed">{item.why_often_missed}</p>
+
+              {/* Why Often Missed */}
+              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20">
+                <span className="text-xs font-semibold uppercase tracking-wide text-amber-400 flex items-center gap-2 mb-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  Why This May Be Missed
+                </span>
+                <p className="text-sm text-amber-100/80 leading-relaxed">{item.why_often_missed}</p>
               </div>
+
+              {/* Suggested Questions */}
+              {item.suggested_questions && item.suggested_questions.length > 0 && (
+                <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-400/20">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-blue-400 flex items-center gap-2 mb-3">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Questions to Consider
+                  </span>
+                  <ul className="space-y-2">
+                    {item.suggested_questions.map((question, qIndex) => (
+                      <li key={qIndex} className="flex items-start gap-2 text-sm text-blue-100/80">
+                        <span className="text-blue-400 mt-1">•</span>
+                        <span>{question}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </motion.article>
         ))}
@@ -502,8 +550,18 @@ function ResultsSection({
         transition={{ delay: 0.8 }}
         className="rounded-3xl backdrop-blur-2xl bg-gradient-to-br from-amber-500/15 to-orange-500/15 border border-amber-400/30 p-8"
       >
-        <h3 className="text-xl font-bold text-amber-300 mb-3">Cognitive Checkpoint</h3>
-        <p className="text-amber-100/80 leading-relaxed">{result.cognitive_checkpoint}</p>
+        <h3 className="text-xl font-bold text-amber-300 mb-4 flex items-center gap-3">
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          Cognitive Checkpoint
+        </h3>
+        <p className="text-amber-100/90 leading-relaxed text-base">{result.cognitive_checkpoint}</p>
+        <div className="mt-4 pt-4 border-t border-amber-400/20">
+          <p className="text-xs text-amber-200/60 italic">
+            Take a moment to reflect on your clinical reasoning. Consider whether any cognitive biases might be influencing your thinking.
+          </p>
+        </div>
       </motion.div>
     </div>
   )
