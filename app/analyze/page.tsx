@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import { 
@@ -74,6 +74,7 @@ export default function AnalyzePage() {
 
       if (!response.ok) {
         setError(data.error ?? 'An unexpected error occurred.')
+        setStep(2)
         return
       }
 
@@ -81,6 +82,7 @@ export default function AnalyzePage() {
       setStep(2)
     } catch {
       setError('Network error. Please check your connection and try again.')
+      setStep(2)
     } finally {
       setIsLoading(false)
     }
@@ -386,9 +388,13 @@ function ResultsSection({
   const [visibleCount, setVisibleCount] = useState(0)
 
   // Animate considerations appearing one by one
-  useState(() => {
-    if (!result) return
+  useEffect(() => {
+    if (!result) {
+      setVisibleCount(0)
+      return
+    }
 
+    setVisibleCount(0)
     let index = 0
     const timer = setInterval(() => {
       if (index < result.considerations.length) {
@@ -400,7 +406,7 @@ function ResultsSection({
     }, 600)
 
     return () => clearInterval(timer)
-  })
+  }, [result])
 
   if (error) {
     return (
