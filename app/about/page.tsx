@@ -5,26 +5,29 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-black">
       {/* Hero Section */}
-      <div className="py-16 text-center bg-gradient-to-b from-slate-50 to-white">
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-          Welcome to{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500">
-            Imperium.
-          </span>
-        </h1>
-        <p className="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto px-4">
-          Revolutionizing clinical reasoning education with AI-powered tools
-        </p>
+      <div className="py-20 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-blue-500/10 blur-3xl" />
+        <div className="relative z-10">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center font-sans tracking-tight">
+            Welcome to{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400">
+              Imperium.
+            </span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto px-4">
+            Revolutionizing clinical reasoning education with AI-powered tools
+          </p>
+        </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-16">
+      <div className="mx-auto max-w-7xl px-4 pb-16">
         {/* Navigation */}
         <nav className="mb-12">
           <a
             href="/"
-            className="inline-flex items-center text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+            className="inline-flex items-center text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
             ← Back to Home
           </a>
@@ -33,13 +36,13 @@ export default function AboutPage() {
         {/* About Us Section */}
         <section className="mb-20">
           <div className="mb-8 text-center">
-          <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-teal-600 to-cyan-500 bg-clip-text text-transparent">
-            <EncryptedText text="About Us" />
-          </h1>
+            <h2 className="mb-4 text-5xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
+              <EncryptedText text="About Us" />
+            </h2>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500"></div>
           </div>
 
-          <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-slate-700">
+          <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-slate-300">
             <p>
               Imperium is an innovative educational platform designed to support clinical reasoning
               exploration and learning. We leverage advanced artificial intelligence to help medical
@@ -61,41 +64,41 @@ export default function AboutPage() {
         {/* Our Mission Section */}
         <section className="mb-20">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-500 bg-clip-text text-transparent">
+            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               <EncryptedText text="Our Mission" />
             </h2>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
           </div>
 
-          <div className="mx-auto max-w-3xl grid gap-8 md:grid-cols-2">
+          <div className="mx-auto max-w-3xl grid gap-6 md:grid-cols-2">
             {/* Mission Card 1 */}
-            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
-              <h3 className="mb-3 text-xl font-bold text-cyan-300">Empower Learning</h3>
-              <p className="text-sm text-white/80">
+            <div className="rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 p-6 transition-all duration-300 hover:bg-white/10 hover:border-cyan-500/30">
+              <h3 className="mb-3 text-xl font-bold text-cyan-400">Empower Learning</h3>
+              <p className="text-sm text-slate-400">
                 Providing AI-powered tools that enhance clinical reasoning education and help healthcare professionals develop stronger diagnostic thinking skills.
               </p>
             </div>
 
             {/* Mission Card 2 */}
-            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
-              <h3 className="mb-3 text-xl font-bold text-cyan-300">Ensure Safety</h3>
-              <p className="text-sm text-white/80">
+            <div className="rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 p-6 transition-all duration-300 hover:bg-white/10 hover:border-cyan-500/30">
+              <h3 className="mb-3 text-xl font-bold text-cyan-400">Ensure Safety</h3>
+              <p className="text-sm text-slate-400">
                 Maintaining strict ethical standards with PII sanitization, regulatory compliance, and responsible AI practices in healthcare.
               </p>
             </div>
 
             {/* Mission Card 3 */}
-            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
-              <h3 className="mb-3 text-xl font-bold text-cyan-300">Democratize Access</h3>
-              <p className="text-sm text-white/80">
+            <div className="rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 p-6 transition-all duration-300 hover:bg-white/10 hover:border-cyan-500/30">
+              <h3 className="mb-3 text-xl font-bold text-cyan-400">Democratize Access</h3>
+              <p className="text-sm text-slate-400">
                 Making cutting-edge clinical reasoning tools available to medical students, residents, and professionals worldwide.
               </p>
             </div>
 
             {/* Mission Card 4 */}
-            <div className="rounded-xl backdrop-blur-xl bg-white/10 border border-white/30 p-6">
-              <h3 className="mb-3 text-xl font-bold text-cyan-300">Foster Collaboration</h3>
-              <p className="text-sm text-white/80">
+            <div className="rounded-xl backdrop-blur-xl bg-white/5 border border-white/10 p-6 transition-all duration-300 hover:bg-white/10 hover:border-cyan-500/30">
+              <h3 className="mb-3 text-xl font-bold text-cyan-400">Foster Collaboration</h3>
+              <p className="text-sm text-slate-400">
                 Building a community of healthcare educators and learners dedicated to advancing medical education through technology.
               </p>
             </div>
@@ -105,7 +108,7 @@ export default function AboutPage() {
         {/* What We Do Section */}
         <section className="mb-20">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
+            <h2 className="mb-4 text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
               <EncryptedText text="What We Do" />
             </h2>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-amber-500 to-orange-500"></div>
@@ -212,14 +215,14 @@ export default function AboutPage() {
 
         {/* CTA Section */}
         <section className="mb-12">
-          <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-blue-50 to-purple-50 p-12 text-center shadow-xl">
-            <h2 className="mb-4 text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Ready to Get Started?</h2>
-            <p className="mb-8 text-lg text-slate-600">
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-12 text-center backdrop-blur-xl">
+            <h2 className="mb-4 text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Ready to Get Started?</h2>
+            <p className="mb-8 text-lg text-slate-400">
               Explore clinical reasoning with Imperium&apos;s educational AI platform.
             </p>
             <a
-              href="/"
-              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105"
+              href="/analyze"
+              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105 hover:shadow-purple-500/25"
             >
               Start Exploring
             </a>
@@ -227,7 +230,7 @@ export default function AboutPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
+        <footer className="border-t border-white/10 pt-8 text-center text-sm text-slate-500">
           <p>
             This tool is for educational purposes only. It does not constitute medical advice or
             treatment recommendations.
@@ -238,7 +241,7 @@ export default function AboutPage() {
         <div className="mt-8 flex items-center justify-between">
           <a
             href="/"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-md transition-all duration-200 hover:bg-slate-50 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-300 transition-all duration-200 hover:bg-white/10 hover:text-white"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -246,10 +249,10 @@ export default function AboutPage() {
             Previous: Home
           </a>
           <a
-            href="/globe"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
+            href="/get-started"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25"
           >
-            Next: Globe
+            Next: Get Started
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

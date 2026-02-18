@@ -16,10 +16,16 @@ export const MedicalInputSchema = z.object({
   age: z.enum(AgeRangeValues),
   sex: z.enum(SexAtBirthValues).optional(),
   symptoms: z.string()
-    .min(10, 'Please describe symptoms in more detail (minimum 10 characters)')
-    .max(2000, 'Symptoms description too long (maximum 2000 characters)'),
+    .min(5, 'Please describe symptoms in more detail (minimum 5 characters)'),
   duration: z.string().min(1, 'Duration is required'),
-  labs: z.string().max(1000, 'Labs description too long (maximum 1000 characters)').optional(),
+  labs: z.string().optional(),
+  medicalHistory: z.string().optional(),
+  medications: z.string().optional(),
+  allergies: z.string().optional(),
+  familyHistory: z.string().optional(),
+  socialHistory: z.string().optional(),
+  vitalSigns: z.string().optional(),
+  physicalExam: z.string().optional(),
 })
 
 export const MedicalOutputSchema = z.object({
@@ -28,10 +34,13 @@ export const MedicalOutputSchema = z.object({
       condition: z.string().min(1, 'Condition name required'),
       reasoning: z.string().min(10, 'Reasoning must be detailed'),
       why_often_missed: z.string().min(10, 'Missing rationale required'),
+      key_features: z.array(z.string()).optional(),
+      red_flags: z.array(z.string()).optional(),
       suggested_questions: z.array(z.string()).min(1, 'At least one question required'),
     })
-  ).min(3, 'Minimum 3 considerations required').max(8, 'Maximum 8 considerations allowed'),
+  ).min(2, 'Minimum 2 considerations required').max(12, 'Maximum 12 considerations allowed'),
   cognitive_checkpoint: z.string().min(20, 'Cognitive checkpoint must be substantial'),
+  differential_summary: z.string().optional(),
   educational_note: z.string().min(10, 'Educational disclaimer required'),
 })
 
@@ -65,6 +74,13 @@ export function sanitizeMedicalInput(input: MedicalInput): MedicalInput {
     symptoms: sanitizeInput(input.symptoms),
     duration: sanitizeInput(input.duration),
     labs: input.labs ? sanitizeInput(input.labs) : undefined,
+    medicalHistory: input.medicalHistory ? sanitizeInput(input.medicalHistory) : undefined,
+    medications: input.medications ? sanitizeInput(input.medications) : undefined,
+    allergies: input.allergies ? sanitizeInput(input.allergies) : undefined,
+    familyHistory: input.familyHistory ? sanitizeInput(input.familyHistory) : undefined,
+    socialHistory: input.socialHistory ? sanitizeInput(input.socialHistory) : undefined,
+    vitalSigns: input.vitalSigns ? sanitizeInput(input.vitalSigns) : undefined,
+    physicalExam: input.physicalExam ? sanitizeInput(input.physicalExam) : undefined,
   }
 }
 

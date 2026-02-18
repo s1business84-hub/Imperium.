@@ -51,13 +51,13 @@ const steps = [
 
 export default function GetStartedPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-black">
       <div className="mx-auto max-w-5xl px-4 py-16">
         {/* Navigation */}
         <nav className="mb-12">
           <a
             href="/"
-            className="inline-flex items-center text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+            className="inline-flex items-center text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
             ← Back to Home
           </a>
@@ -65,11 +65,11 @@ export default function GetStartedPage() {
 
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent">
+          <h1 className="mb-4 text-5xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
             <EncryptedText text="Get Started" />
           </h1>
           <div className="mx-auto mb-6 h-1 w-24 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
+          <p className="mx-auto max-w-2xl text-lg text-slate-400">
             Follow these simple steps to explore clinical reasoning with Imperium.
             This guide will walk you through the entire process.
           </p>
@@ -80,23 +80,23 @@ export default function GetStartedPage() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-200"
+              className="group rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-violet-500/30"
             >
               <div className="flex flex-col gap-6 sm:flex-row">
                 <div className="flex-shrink-0">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-100">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-500/20 text-violet-400 transition-colors group-hover:bg-violet-500/30">
                     {step.icon}
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="mb-2 text-xl font-bold text-slate-900">
+                  <h3 className="mb-2 text-xl font-bold text-white">
                     {step.title}
                   </h3>
-                  <p className="mb-4 text-base leading-relaxed text-slate-600">
+                  <p className="mb-4 text-base leading-relaxed text-slate-400">
                     {step.description}
                   </p>
-                  <div className="rounded-lg bg-blue-50 px-4 py-3">
-                    <p className="text-sm text-blue-800">
+                  <div className="rounded-lg bg-violet-500/10 border border-violet-500/20 px-4 py-3">
+                    <p className="text-sm text-violet-300">
                       <span className="font-semibold">💡 Tip:</span> {step.tip}
                     </p>
                   </div>
@@ -107,32 +107,32 @@ export default function GetStartedPage() {
         </div>
 
         {/* Important Notes */}
-        <div className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-8">
+        <div className="mt-16 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-8 backdrop-blur-sm">
           <div className="flex items-start gap-4">
-            <IconAlertTriangle className="mt-1 h-6 w-6 flex-shrink-0 text-amber-600" />
+            <IconAlertTriangle className="mt-1 h-6 w-6 flex-shrink-0 text-amber-400" />
             <div>
-              <h3 className="mb-3 text-lg font-bold text-amber-900">
+              <h3 className="mb-3 text-lg font-bold text-amber-300">
                 Important Reminders
               </h3>
-              <ul className="space-y-2 text-sm text-amber-800">
+              <ul className="space-y-2 text-sm text-amber-200/80">
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400"></span>
                   This tool is for <strong>educational purposes only</strong> and does not provide medical advice.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400"></span>
                   Never use this tool for actual clinical decision-making or self-diagnosis.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400"></span>
                   Always consult a qualified healthcare provider for medical concerns.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400"></span>
                   Do not enter any personally identifiable information (PII) into the tool.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-400"></span>
                   Rate limit: 10 requests per minute per user.
                 </li>
               </ul>
@@ -143,8 +143,8 @@ export default function GetStartedPage() {
         {/* CTA */}
         <div className="mt-12 text-center">
           <a
-            href="/"
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105"
+            href="/analyze"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105 hover:shadow-violet-500/25"
           >
             Start Exploring Now
             <IconArrowRight className="h-5 w-5" />
@@ -155,7 +155,7 @@ export default function GetStartedPage() {
         <div className="mt-12 flex items-center justify-between">
           <a
             href="/"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-md transition-all duration-200 hover:bg-slate-50 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-300 transition-all duration-200 hover:bg-white/10 hover:text-white"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -164,7 +164,7 @@ export default function GetStartedPage() {
           </a>
           <a
             href="/about"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/25"
           >
             Next: About Us
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

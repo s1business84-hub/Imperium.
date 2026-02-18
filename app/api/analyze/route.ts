@@ -77,8 +77,10 @@ export async function POST(req: NextRequest) {
   try {
     const completion = await client.chat.completions.create({
       model: 'gpt-4o',
-      temperature: 0.4,
-      max_tokens: 4096,
+      temperature: 0.3,
+      max_tokens: 8192,
+      presence_penalty: 0.1,
+      frequency_penalty: 0.1,
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: buildUserPrompt(sanitized) },
