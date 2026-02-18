@@ -14,9 +14,13 @@ import {
 export const DraggableCardBody = ({
   className,
   children,
+  onDragStart,
+  onDragEnd,
 }: {
   className?: string;
   children: React.ReactNode;
+  onDragStart?: () => void;
+  onDragEnd?: () => void;
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -106,9 +110,11 @@ export const DraggableCardBody = ({
       dragConstraints={constraints}
       onDragStart={() => {
         document.body.style.cursor = "grabbing";
+        onDragStart?.();
       }}
       onDragEnd={(event, info) => {
         document.body.style.cursor = "default";
+        onDragEnd?.();
 
         controls.start({
           rotateX: 0,

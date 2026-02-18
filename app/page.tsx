@@ -1,16 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { motion } from 'motion/react'
-import Disclaimer from '@/components/Disclaimer'
-import InputForm from '@/components/InputForm'
-import ResultsPanel from '@/components/ResultsPanel'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import { LampContainer } from '@/components/ui/lamp'
 import { BackgroundLines } from '@/components/ui/background-lines'
-import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
 
 const MacbookScroll = dynamic(
   () => import('@/components/ui/macbook-scroll').then((mod) => mod.MacbookScroll),
@@ -18,37 +15,6 @@ const MacbookScroll = dynamic(
 )
 
 export default function HomePage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [result, setResult] = useState<MedicalOutput | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [showForm, setShowForm] = useState(false)
-
-  async function handleSubmit(payload: MedicalInput) {
-    setIsLoading(true)
-    setError(null)
-    setResult(null)
-
-    try {
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        setError(data.error ?? 'An unexpected error occurred.')
-        return
-      }
-
-      setResult(data as MedicalOutput)
-    } catch {
-      setError('Network error. Please check your connection and try again.')
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   return (
     <BackgroundLines className="relative" svgOptions={{ duration: 5 }}>
@@ -92,33 +58,18 @@ export default function HomePage() {
             <h2 className="mb-6 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-3xl font-medium tracking-tight text-transparent md:text-5xl">
               Ready to explore?
             </h2>
-            <button
-              onClick={() => setShowForm(!showForm)}
-              className="inline-flex items-center gap-2 rounded-lg bg-cyan-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:bg-cyan-400 hover:shadow-xl"
+            <Link
+              href="/analyze"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-5 text-lg font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/30 hover:from-cyan-400 hover:to-blue-500 group"
             >
-              {showForm ? 'Hide Form' : 'Start Exploring Now'}
-              <svg className={`h-5 w-5 transition-transform duration-200 ${showForm ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              Start Exploring Now
+              <svg className="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </button>
+            </Link>
           </motion.div>
         </LampContainer>
       </div>
-
-      {/* Form - Only shown after clicking Start Exploring */}
-      {showForm && (
-        <div className="mx-auto max-w-3xl" id="explore">
-          <section className="mt-12 space-y-8">
-            <InputForm onSubmit={handleSubmit} isLoading={isLoading} />
-            <ResultsPanel result={result} error={error} />
-          </section>
-
-          {/* Disclaimer */}
-          <div className="mt-12">
-            <Disclaimer />
-          </div>
-        </div>
-      )}
 
       {/* Footer */}
       <div className="mx-auto max-w-3xl">
