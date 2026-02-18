@@ -52,16 +52,16 @@ export default function HomePage() {
 
   return (
     <BackgroundLines className="relative" svgOptions={{ duration: 5 }}>
-      <main className="mx-auto max-w-7xl px-4 py-10">
+      <main className="mx-auto max-w-7xl px-4 py-4">
         {/* Hero: Welcome */}
-        <div className="mb-12 flex items-center justify-center text-center">
+        <div className="mb-4 flex items-center justify-center text-center">
           <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
             <EncryptedText text="Welcome to Imperium" className="font-semibold" />
           </p>
         </div>
 
       {/* MacbookScroll Section */}
-      <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
+      <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full -mt-8">
         <MacbookScroll
           title={
             <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent dark:text-white">
