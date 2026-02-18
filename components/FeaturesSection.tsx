@@ -10,7 +10,7 @@ import {
   IconLicense,
   IconChartDots,
 } from "@tabler/icons-react";
-import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 
 export function FeaturesSection() {
   const [activeCard, setActiveCard] = useState<string | null>(null);
@@ -75,30 +75,29 @@ export function FeaturesSection() {
 
   return (
     <div className="relative z-10 mx-auto max-w-7xl py-10">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <DraggableCardContainer className="flex flex-wrap items-center justify-center gap-6">
         {features.map((feature) => (
           <div 
             key={feature.title} 
             onClick={() => setActiveCard(activeCard === feature.title ? null : feature.title)}
-            className="cursor-pointer"
+            className="cursor-grab active:cursor-grabbing"
           >
-            <CardSpotlight 
-              className="h-full" 
-              isActive={activeCard === feature.title}
+            <DraggableCardBody 
+              className="h-full"
             >
-              <div className="relative z-20">
-                <div className="mb-4 text-blue-400">{feature.icon}</div>
+              <div className="relative z-20 flex flex-col h-full">
+                <div className="mb-4 text-cyan-400">{feature.icon}</div>
                 <h3 className="mb-2 text-lg font-bold text-white">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-neutral-300">
+                <p className="text-sm text-white/70 flex-1">
                   {feature.description}
                 </p>
               </div>
-            </CardSpotlight>
+            </DraggableCardBody>
           </div>
         ))}
-      </div>
+      </DraggableCardContainer>
     </div>
   );
 }
