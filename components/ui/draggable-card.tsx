@@ -20,7 +20,7 @@ export const DraggableCardBody = ({
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
   const [constraints, setConstraints] = useState({
     top: 0,
