@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import {
   IconBrain,
   IconShieldCheck,
@@ -12,6 +13,7 @@ import {
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 export function FeaturesSection() {
+  const [activeCard, setActiveCard] = useState<string | null>(null);
   const features = [
     {
       title: "Clinical Reasoning",
@@ -75,8 +77,15 @@ export function FeaturesSection() {
     <div className="relative z-10 mx-auto max-w-7xl py-10">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (
-          <a key={feature.title} href={feature.href}>
-            <CardSpotlight className="h-full">
+          <div 
+            key={feature.title} 
+            onClick={() => setActiveCard(activeCard === feature.title ? null : feature.title)}
+            className="cursor-pointer"
+          >
+            <CardSpotlight 
+              className="h-full" 
+              isActive={activeCard === feature.title}
+            >
               <div className="relative z-20">
                 <div className="mb-4 text-blue-400">{feature.icon}</div>
                 <h3 className="mb-2 text-lg font-bold text-white">
@@ -87,7 +96,7 @@ export function FeaturesSection() {
                 </p>
               </div>
             </CardSpotlight>
-          </a>
+          </div>
         ))}
       </div>
     </div>

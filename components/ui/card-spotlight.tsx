@@ -14,12 +14,14 @@ export const CardSpotlight = ({
   radius = 350,
   color = "#262626",
   className,
+  isActive = false,
   ...props
 }: {
   children: React.ReactNode;
   radius?: number;
   color?: string;
   className?: string;
+  isActive?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -47,6 +49,8 @@ export const CardSpotlight = ({
     )
   `;
 
+  const shouldShowReveal = isHovering || isActive;
+
   return (
     <div
       className={cn(
@@ -63,9 +67,10 @@ export const CardSpotlight = ({
         style={{
           backgroundColor: color,
           maskImage,
+          opacity: shouldShowReveal ? 1 : 0,
         }}
       >
-        {isHovering && (
+        {shouldShowReveal && (
           <CanvasRevealEffect
             animationSpeed={5}
             containerClassName="bg-transparent absolute inset-0 pointer-events-none"

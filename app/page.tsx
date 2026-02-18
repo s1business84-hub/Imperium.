@@ -76,16 +76,6 @@ export default function HomePage() {
       {/* Feature Cards */}
       <FeaturesSection />
 
-      {/* About Link */}
-      <div className="mt-8 flex justify-center">
-        <a
-          href="/about"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-md transition-all duration-200 hover:bg-slate-50 hover:shadow-lg"
-        >
-          Learn More About Us →
-        </a>
-      </div>
-
       {/* Start Exploring Button with Lamp Effect */}
       <div className="mt-12">
         <LampContainer className="rounded-xl">
