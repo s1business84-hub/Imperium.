@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
   IconBrain,
   IconShieldCheck,
@@ -16,6 +16,16 @@ import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/dragg
 export function FeaturesSection() {
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [draggingCard, setDraggingCard] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Staggered parallax for cards - each row moves differently
+  const row1Y = useTransform(scrollYProgress, [0, 1], [60, -30]);
+  const row2Y = useTransform(scrollYProgress, [0, 1], [40, -20]);
 
   const features = [
     {
@@ -77,31 +87,59 @@ export function FeaturesSection() {
   ];
 
   return (
-    <div className="relative z-10 mx-auto max-w-7xl py-10">
+    <div ref={sectionRef} className="relative z-10 mx-auto max-w-7xl py-10">
+      {/* Section Title with parallax */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent mb-4">
+          Powerful Features
+        </h2>
+        <p className="text-white/60 max-w-2xl mx-auto">
+          Explore our comprehensive suite of tools designed for medical education
+        </p>
+      </motion.div>
+
       <DraggableCardContainer className="flex flex-wrap items-center justify-center gap-6">
-        {features.map((feature) => (
-          <div 
+        {features.map((feature, index) => (
+          <motion.div 
             key={feature.title} 
+            style={{ y: index < 4 ? row1Y : row2Y }}
             onClick={() => setActiveCard(activeCard === feature.title ? null : feature.title)}
             className="cursor-grab active:cursor-grabbing flex flex-col items-center"
           >
-            <DraggableCardBody 
-              className="h-full"
-              onDragStart={() => setDraggingCard(feature.title)}
-              onDragEnd={() => {
-                setTimeout(() => setDraggingCard(null), 1500);
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: "easeOut"
               }}
+              viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="relative z-20 flex flex-col h-full">
-                <div className="mb-4 text-cyan-400">{feature.icon}</div>
-                <h3 className="mb-2 text-lg font-bold text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-white/70 flex-1">
-                  {feature.description}
-                </p>
-              </div>
-            </DraggableCardBody>
+              <DraggableCardBody 
+                className="h-full"
+                onDragStart={() => setDraggingCard(feature.title)}
+                onDragEnd={() => {
+                  setTimeout(() => setDraggingCard(null), 1500);
+                }}
+              >
+                <div className="relative z-20 flex flex-col h-full">
+                  <div className="mb-4 text-cyan-400">{feature.icon}</div>
+                  <h3 className="mb-2 text-lg font-bold text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-white/70 flex-1">
+                    {feature.description}
+                  </p>
+                </div>
+              </DraggableCardBody>
+            </motion.div>
             
             {/* Swipe text that appears under the card */}
             <AnimatePresence>
@@ -121,7 +159,7 @@ export function FeaturesSection() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         ))}
       </DraggableCardContainer>
     </div>
