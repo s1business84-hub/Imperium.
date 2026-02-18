@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import Disclaimer from '@/components/Disclaimer'
 import InputForm from '@/components/InputForm'
@@ -9,6 +10,11 @@ import { FeaturesSection } from '@/components/FeaturesSection'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import { LampContainer } from '@/components/ui/lamp'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
+
+const MacbookScroll = dynamic(
+  () => import('@/components/ui/macbook-scroll').then((mod) => mod.MacbookScroll),
+  { ssr: false }
+)
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -50,6 +56,19 @@ export default function HomePage() {
         <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
           <EncryptedText text="Welcome to Imperium" className="font-semibold" />
         </p>
+      </div>
+
+      {/* MacbookScroll Section */}
+      <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
+        <MacbookScroll
+          title={
+            <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent dark:text-white">
+              Clinical Reasoning, <br /> <span className="bg-gradient-to-r from-pink-600 to-orange-500 bg-clip-text text-transparent">Reimagined.</span>
+            </span>
+          }
+          showGradient={false}
+          src="/cards-screenshot.png"
+        />
       </div>
 
       {/* Feature Cards */}
