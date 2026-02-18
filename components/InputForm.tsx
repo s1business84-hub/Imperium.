@@ -49,18 +49,20 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl backdrop-blur-xl bg-white/20 border border-white/30 p-8 shadow-2xl">
+      <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Clinical Presentation</h2>
+      
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Age range</span>
+          <span className="mb-2 block text-sm font-semibold text-white/90">Age range</span>
           <select
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="w-full rounded-xl backdrop-blur-md bg-white/10 border border-white/30 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 focus:bg-white/20 transition"
             value={age}
             onChange={(event) => setAge(event.target.value as MedicalInput['age'])}
             required
           >
             {AgeRangeValues.map((value) => (
-              <option key={value} value={value}>
+              <option key={value} value={value} className="bg-slate-900 text-white">
                 {value}
               </option>
             ))}
@@ -68,14 +70,14 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Sex assigned at birth (optional)</span>
+          <span className="mb-2 block text-sm font-semibold text-white/90">Sex assigned at birth (optional)</span>
           <select
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+            className="w-full rounded-xl backdrop-blur-md bg-white/10 border border-white/30 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 focus:bg-white/20 transition"
             value={sex ?? 'prefer_not_to_say'}
             onChange={(event) => setSex(event.target.value as MedicalInput['sex'])}
           >
             {SexAtBirthValues.map((value) => (
-              <option key={value} value={value}>
+              <option key={value} value={value} className="bg-slate-900 text-white">
                 {value.replace(/_/g, ' ')}
               </option>
             ))}
@@ -84,21 +86,21 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
       </div>
 
       <label className="block">
-        <span className="mb-1 block text-sm font-medium text-slate-700">Symptoms</span>
+        <span className="mb-2 block text-sm font-semibold text-white/90">Symptoms</span>
         <textarea
-          className="min-h-28 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          className="min-h-28 w-full rounded-xl backdrop-blur-md bg-white/10 border border-white/30 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 focus:bg-white/20 transition resize-none"
           placeholder="Describe symptoms in plain language. Avoid names or ID numbers."
           value={symptoms}
           onChange={(event) => setSymptoms(event.target.value.slice(0, MAX_SYMPTOMS_LENGTH))}
           required
         />
-        <span className="mt-1 block text-xs text-slate-500">{symptoms.length}/{MAX_SYMPTOMS_LENGTH}</span>
+        <span className="mt-1 block text-xs text-white/60">{symptoms.length}/{MAX_SYMPTOMS_LENGTH}</span>
       </label>
 
       <label className="block">
-        <span className="mb-1 block text-sm font-medium text-slate-700">Duration</span>
+        <span className="mb-2 block text-sm font-semibold text-white/90">Duration</span>
         <input
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          className="w-full rounded-xl backdrop-blur-md bg-white/10 border border-white/30 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 focus:bg-white/20 transition"
           placeholder="e.g., 5 days, 2 weeks, intermittent for 3 months"
           value={duration}
           onChange={(event) => setDuration(event.target.value)}
@@ -107,22 +109,22 @@ export default function InputForm({ onSubmit, isLoading }: InputFormProps) {
       </label>
 
       <label className="block">
-        <span className="mb-1 block text-sm font-medium text-slate-700">Labs or prior findings (optional)</span>
+        <span className="mb-2 block text-sm font-semibold text-white/90">Labs or prior findings (optional)</span>
         <textarea
-          className="min-h-24 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          className="min-h-24 w-full rounded-xl backdrop-blur-md bg-white/10 border border-white/30 px-4 py-2.5 text-sm text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 focus:bg-white/20 transition resize-none"
           placeholder="Optional. Share only non-identifying findings."
           value={labs}
           onChange={(event) => setLabs(event.target.value.slice(0, MAX_LABS_LENGTH))}
         />
-        <span className="mt-1 block text-xs text-slate-500">{labs.length}/{MAX_LABS_LENGTH}</span>
+        <span className="mt-1 block text-xs text-white/60">{labs.length}/{MAX_LABS_LENGTH}</span>
       </label>
 
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {error ? <p className="text-sm text-red-300">{error}</p> : null}
 
       <button
         type="submit"
         disabled={isDisabled}
-        className="inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full mt-6 relative inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:from-cyan-300 hover:to-blue-400 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none transition duration-200"
       >
         {isLoading ? 'Analyzing…' : 'Generate educational considerations'}
       </button>
