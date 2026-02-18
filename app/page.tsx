@@ -9,6 +9,7 @@ import ResultsPanel from '@/components/ResultsPanel'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import { LampContainer } from '@/components/ui/lamp'
+import { BackgroundLines } from '@/components/ui/background-lines'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
 
 const MacbookScroll = dynamic(
@@ -50,13 +51,14 @@ export default function HomePage() {
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10">
-      {/* Hero: Welcome */}
-      <div className="mb-12 flex items-center justify-center text-center">
-        <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          <EncryptedText text="Welcome to Imperium" className="font-semibold" />
-        </p>
-      </div>
+    <BackgroundLines className="relative" svgOptions={{ duration: 5 }}>
+      <main className="mx-auto max-w-7xl px-4 py-10">
+        {/* Hero: Welcome */}
+        <div className="mb-12 flex items-center justify-center text-center">
+          <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <EncryptedText text="Welcome to Imperium" className="font-semibold" />
+          </p>
+        </div>
 
       {/* MacbookScroll Section */}
       <div className="overflow-hidden dark:bg-[#0B0B0F] bg-white w-full">
@@ -152,6 +154,7 @@ export default function HomePage() {
           </a>
         </div>
       </div>
-    </main>
+      </main>
+    </BackgroundLines>
   )
 }
