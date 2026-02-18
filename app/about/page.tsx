@@ -3,26 +3,10 @@ import React from "react";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen relative">
-      {/* Dotted Glow Background */}
-      <DottedGlowBackground
-        className="pointer-events-none fixed inset-0 z-0 mask-radial-to-90% mask-radial-at-center"
-        opacity={0.6}
-        gap={12}
-        radius={1.5}
-        colorLightVar="--color-neutral-400"
-        glowColorLightVar="--color-teal-500"
-        colorDarkVar="--color-neutral-500"
-        glowColorDarkVar="--color-teal-600"
-        backgroundOpacity={0}
-        speedMin={0.2}
-        speedMax={1.2}
-        speedScale={0.8}
-      />
+    <main className="min-h-screen">
       {/* Hero Beams Section */}
       <BackgroundBeamsWithCollision>
         <div className="relative z-20 text-center">

@@ -8,7 +8,6 @@ import ResultsPanel from '@/components/ResultsPanel'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { EncryptedText } from '@/components/ui/encrypted-text'
 import { BackgroundLines } from '@/components/ui/background-lines'
-import { DottedGlowBackground } from '@/components/ui/dotted-glow-background'
 import type { MedicalInput, MedicalOutput } from '@/lib/schemas'
 
 const MacbookScroll = dynamic(
@@ -51,22 +50,7 @@ export default function HomePage() {
 
   return (
     <BackgroundLines className="relative">
-      {/* Dotted Glow Background */}
-      <DottedGlowBackground
-        className="pointer-events-none fixed inset-0 z-0 mask-radial-to-90% mask-radial-at-center"
-        opacity={0.6}
-        gap={12}
-        radius={1.5}
-        colorLightVar="--color-neutral-400"
-        glowColorLightVar="--color-blue-500"
-        colorDarkVar="--color-neutral-500"
-        glowColorDarkVar="--color-blue-600"
-        backgroundOpacity={0}
-        speedMin={0.2}
-        speedMax={1.2}
-        speedScale={0.8}
-      />
-      <main className="relative z-10 mx-auto max-w-7xl px-4 py-10">
+      <main className="mx-auto max-w-7xl px-4 py-10">
         {/* Hero: Welcome + Nav */}
         <div className="mb-12 flex items-center justify-center text-center">
           <p className="text-2xl font-light sm:text-3xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
